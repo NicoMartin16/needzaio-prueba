@@ -1,0 +1,54 @@
+/* Estilos del header */
+.contenedor_menu {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .8);
+}
+
+.contenedor_menu .sitio a {
+    text-decoration: none;
+    color: black;
+}
+
+.contenedor_menu .sitio a h2 {
+    font-size: 18px;
+}
+
+.contenedor_menu .menu {
+    text-align: right;
+}
+
+.contenedor_menu .menu a {
+    color: black;
+    margin-left: 50px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.contenedor_menu .menu a:hover {
+    text-decoration: underline;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+
+/* Estilos del login */
+
+.form_login {
+    padding: 5% 0;
+}
+
+.form_login .titulo {
+    text-align: center;
+}
+
+.btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form_login fieldset .form-group .titulo_login {
+    font-size: 20px;
+    text-align: left;
+}

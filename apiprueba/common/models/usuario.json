@@ -1,0 +1,41 @@
+{
+    "name": "usuario",
+    "plural": "usuarios",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "lastName": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "isMilitar": {
+            "type": "boolean"
+        },
+        "timeCreate": {
+            "type": "date"
+        },
+        "isTemporal": {
+            "type": "boolean"
+        },
+        "userDocument": {
+            "type": "object"
+        },
+        "contact": {
+            "type": "object"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [{
+        "accessType": "READ",
+        "principalType": "ROLE",
+        "principalId": "$unauthenticated",
+        "permission": "DENY"
+    }],
+    "methods": {}
+}

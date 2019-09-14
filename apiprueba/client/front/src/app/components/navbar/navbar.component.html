@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row contenedor_menu">
+        <div class="sitio col-12 col-md-5">
+            <a href="#">
+                <h2>Prueba Needzaio</h2>
+            </a>
+        </div>
+        <div class="menu col-12 col-md-7">
+            <a [routerLink]="['/home']" routerLinkActive="active">Registro basico</a>
+            <a *ngIf="status" [routerLink]="['/list']" routerLinkActive="active">Busqueda</a>
+            <a *ngIf="!status" [routerLink]="['/sign-up']" routerLinkActive="active">Registrate</a>
+            <a *ngIf="!status" [routerLink]="['/login']" routerLinkActive="active">Entrar</a>
+            <a *ngIf="status" (click)="onLogout()">Salir</a>
+        </div>
+    </div>
+
+</div>

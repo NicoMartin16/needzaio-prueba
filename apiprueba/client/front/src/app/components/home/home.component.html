@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row form_login">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <h3 class="titulo mb-4">Registro de usuario</h3>
+                <form #formRegistrarBasico="ngForm" (ngSubmit)="onSaveUsuario(formRegistrarBasico)">
+                    <div class="form-group">
+                        <label for="lastname">Apellidos</label>
+                        <input type="text" name="lastname" id="" [(ngModel)]="usuario.lastName" class="form-control " placeholder="Apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombres</label>
+                        <input type="text" name="name" id="" [(ngModel)]="usuario.name" class="form-control " placeholder="Nombres">
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Documento</label>
+                        <input type="text" name="document" id="" [(ngModel)]="usuario['userDocument'].document" class="form-control" placeholder="Documento">
+                    </div>
+                    <h2>Tipo Documento</h2>
+                    <div class="form-check form-check-inline" *ngFor="let document of tipodocumentos">
+                        <label class="form-check-label">
+                            <input class="form-check-input" (change)="changeValue(document)" type="radio" name="document" id="" value="{{document}}"> {{document}}
+                        </label>
+                    </div>
+                    <div class="form-group pt-3">
+                        <label for="lugar">Lugar de expedición</label>
+                        <input type="text" name="lugar" id="" [(ngModel)]="usuario['userDocument'].place" class="form-control" placeholder="Lugar de expedicion">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha de expedición</label>
+                        <input type="date" name="date" id="" [(ngModel)]="usuario['userDocument'].date" class="form-control" placeholder="Fecha de expedicion">
+                    </div>
+                    <h2 pt-3>Contacto</h2>
+                    <div class="form-group">
+                        <label for="address">Direccion</label>
+                        <input type="text" name="address" id="" [(ngModel)]="usuario['contact'].address" class="form-control" placeholder="Direccion" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Ciudad</label>
+                        <input type="text" name="city" id="" [(ngModel)]="usuario['contact'].city" class="form-control" placeholder="Ciudad" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefono fijo</label>
+                        <input type="text" name="phone" id="" [(ngModel)]="usuario['contact'].phone" class="form-control" placeholder="Telefono fijo" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="celphone">Celular</label>
+                        <input type="text" name="celphone" id="" [(ngModel)]="usuario['contact'].celphone" class="form-control" placeholder="Celular" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyname">Contacto de emergencia</label>
+                        <input type="text" name="emergencyname" id="" [(ngModel)]="usuario['contact'].emergencyname" class="form-control" placeholder="Nombre contacto" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyphone">Numero de contacto</label>
+                        <input type="text" name="emergencyphone" id="" [(ngModel)]="usuario['contact'].emergencyphone" class="form-control" placeholder="Numero contacto" aria-describedby="helpId">
+                    </div>
+
+                    <input class="btn-login btn btn-primary btn-block" type="submit" value="Registrar">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

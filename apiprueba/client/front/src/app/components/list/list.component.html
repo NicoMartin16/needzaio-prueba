@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <table class="table my-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Tipo documento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios">
+                    <td> {{usuario.lastName}} </td>
+                    <td> {{usuario.name}} </td>
+                    <td>{{usuario['userDocument'].place}}</td>
+                    <td>{{usuario['userDocument'].document}}</td>
+                    <td *ngIf="usuario.isMilitar">Militar</td>
+                    <td *ngIf="!usuario.isMilitar">Temporal</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
