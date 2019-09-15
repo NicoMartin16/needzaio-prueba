@@ -3,20 +3,35 @@
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
                 <h3 class="titulo mb-4">Registrate</h3>
-                <form #formRegistrarUsuario="ngForm" (ngSubmit)="registrarUser(formRegistrarUsuario)">
+                <form (ngSubmit)="registrarUser()" [formGroup]="formSignUp">
                     <div class="form-group">
                         <label for="username">Nickname</label>
-                        <input type="text" name="username" id="" [(ngModel)]="user.name" class="form-control " placeholder="Nickname">
+                        <input type="text" name="username" formControlName="name" id="" [(ngModel)]="user.name" class="form-control " placeholder="Nickname">
+                        <div *ngIf="formSignUp.controls['name'].errors?.required && (formSignUp.get('name').dirty || formSignUp.get('name').touched)" class="alert alert-danger mt-2" role="alert">
+                            <strong>Se requiere un nickname</strong>
+                        </div>
+                        <div *ngIf="formSignUp.controls['name'].errors?.minlength" class="alert alert-danger mt-2" role="alert">
+                            <strong>Se requiere minimo 3 caracteres</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Correo</label>
-                        <input type="email" name="email" id="" [(ngModel)]="user.email" class="form-control " placeholder="Correo">
+                        <input type="email" name="email" id="" formControlName="email" [(ngModel)]="user.email" class="form-control " placeholder="Correo">
+                        <div *ngIf="formSignUp.controls['email'].errors?.required &&(formSignUp.get('email').dirty || formSignUp.get('email').touched)" class="alert alert-danger mt-2" role="alert">
+                            <strong>Se requiere correo</strong>
+                        </div>
+                        <div *ngIf="formSignUp.controls['email'].errors?.pattern " class="alert alert-danger mt-2" role="alert">
+                            <strong>Debe ser un correo valido</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" name="password" id="" [(ngModel)]="user.password" class="form-control" placeholder="Contraseña">
+                        <input type="password" name="password" id="" formControlName="password" [(ngModel)]="user.password" class="form-control" placeholder="Contraseña">
                     </div>
-                    <input class="btn-login btn btn-primary btn-block" type="submit" value="Registrar">
+                    <div *ngIf="formSignUp.controls['password'].errors?.required && (formSignUp.get('password').dirty || formSignUp.get('password').touched)" class="alert alert-danger " role="alert">
+                        <strong>Se requiere contraseña</strong>
+                    </div>
+                    <input class="btn-login btn btn-primary btn-block" [disabled]="!formSignUp.valid" type="submit" value="Registrar">
                 </form>
             </div>
         </div>

@@ -8,8 +8,9 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public usuario:Usuario;
+  public usuario: Usuario;
   public tipodocumentos: string[] = ['Militar', 'Temporal'];
+  public status: string;
   constructor(private _dataService: DataService) {
     this.usuario = new Usuario(
       '',
@@ -32,24 +33,20 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit() {
-    
-  }
-
+  ngOnInit() {}
   onSaveUsuario(form){
     this._dataService.guardarUsuarios(this.usuario).subscribe(
       response => {
+        this.status = "success";
         form.reset();
         alert("Se ha registrado los datos correctamente");
       },
       err => {
-        console.log(err);
+        this.status = "failed";
       }
-    )
+    );
 
   }
-
   changeValue(document: string){
 
     console.log(document);
@@ -63,7 +60,7 @@ export class HomeComponent implements OnInit {
         this.usuario.isTemporal = true;
         break
       default:
-        break; 
+        break;
     }
   }
 

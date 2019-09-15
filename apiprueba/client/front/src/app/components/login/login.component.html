@@ -8,9 +8,10 @@
                 </div>
 
                 <form [formGroup]="formularioLogin" (ngSubmit)="onLogin()">
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="{'is-invalid': !formularioLogin.get('email').valid,
+                                                        'is-invalid': !formularioLogin.get('password').valid}">
                         <label class="titulo_login" for="email">Correo</label>
-                        <input type="email" name="email" id="" [ngClass]="{'is-invalid': !formularioLogin.get('email').valid}" formControlName="email" [(ngModel)]="user.email" class="form-control form-control-lg " placeholder="Correo">
+                        <input type="email" name="email" id="" formControlName="email" [(ngModel)]="user.email" class="form-control form-control-lg " placeholder="Correo">
                         <div *ngIf="formularioLogin.controls['email'].errors?.required &&(formularioLogin.get('email').dirty || formularioLogin.get('email').touched)" class="alert alert-danger mt-2" role="alert">
                             <strong>Se requiere correo</strong>
                         </div>
@@ -18,14 +19,12 @@
                             <strong>Debe ser un correo valido</strong>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="titulo_login" for="password">Contraseña</label>
-                        <input type="password" name="password" id="" [ngClass]="{'is-invalid': !formularioLogin.get('password').valid}" formControlName="password" [(ngModel)]="user.password" class="form-control form-control-lg" placeholder="Contraseña">
-                        <div *ngIf="formularioLogin.controls['password'].errors?.required && (formularioLogin.get('password').dirty || formularioLogin.get('password').touched)" class="alert alert-danger mt-2" role="alert">
-                            <strong>Se requiere contraseña</strong>
-                        </div>
+                    <label class="titulo_login" for="password">Contraseña</label>
+                    <input type="password" name="password" id="" formControlName="password" [(ngModel)]="user.password" class="form-control form-control-lg" placeholder="Contraseña">
+                    <div *ngIf="formularioLogin.controls['password'].errors?.required && (formularioLogin.get('password').dirty || formularioLogin.get('password').touched)" class="alert alert-danger mt-2" role="alert">
+                        <strong>Se requiere contraseña</strong>
                     </div>
-                    <input class="btn-login btn btn-primary btn-block btn-lg" [disabled]="!formularioLogin.valid" type="submit" value="Ingresar">
+                    <input class="btn-login btn btn-primary btn-block btn-lg mt-2" [disabled]="!formularioLogin.valid" type="submit" value="Ingresar">
                 </form>
             </div>
         </div>

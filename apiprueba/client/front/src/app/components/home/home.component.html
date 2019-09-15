@@ -3,60 +3,100 @@
         <div class="col-md-12">
             <div class="card card-body">
                 <h3 class="titulo mb-4">Registro de usuario</h3>
-                <form #formRegistrarBasico="ngForm" (ngSubmit)="onSaveUsuario(formRegistrarBasico)">
+                <div class="alert alert-danger" *ngIf="status == 'failed'" role="alert">
+                    <strong>Los datos registrados no son validos</strong>
+                </div>
+                <div class="alert alert-success" *ngIf="status == 'success'" role="alert">
+                    <strong>El registro se realizo de forma correcta</strong>
+                </div>
+                <form #formRegistro="ngForm" (ngSubmit)="onSaveUsuario()">
                     <div class="form-group">
                         <label for="lastname">Apellidos</label>
-                        <input type="text" name="lastname" id="" [(ngModel)]="usuario.lastName" class="form-control " placeholder="Apellidos">
+                        <input type="text" name="lastname" id="" #apellidos="ngModel" [(ngModel)]="usuario.lastName" class="form-control" required placeholder="Apellidos">
+                        <div class="alert alert-danger mt-2" *ngIf="apellidos.touched && !apellidos.valid" role="alert">
+                            <strong>Apellidos son obligatorios</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="name">Nombres</label>
-                        <input type="text" name="name" id="" [(ngModel)]="usuario.name" class="form-control " placeholder="Nombres">
-                    </div>
-                    <div class="form-group">
-                        <label for="document">Documento</label>
-                        <input type="text" name="document" id="" [(ngModel)]="usuario['userDocument'].document" class="form-control" placeholder="Documento">
+                        <input type="text" name="name" id="" #nombre="ngModel" [(ngModel)]="usuario.name" class="form-control " required placeholder="Nombres">
+                        <div class="alert alert-danger mt-2" *ngIf="nombre.touched && !nombre.valid" role="alert">
+                            <strong>Nombres son obligatorios</strong>
+                        </div>
                     </div>
                     <h2>Tipo Documento</h2>
                     <div class="form-check form-check-inline" *ngFor="let document of tipodocumentos">
-                        <label class="form-check-label">
-                            <input class="form-check-input" (change)="changeValue(document)" type="radio" name="document" id="" value="{{document}}"> {{document}}
+                        <label class="form-check-label mt-2">
+                            <input class="form-check-input" required (change)="changeValue(document)" type="radio" name="document" id=""
+                                value="{{document}}"> {{document}}
                         </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Documento</label>
+                        <input type="text" name="document" id="" #documento="ngModel" [(ngModel)]="usuario['userDocument'].document" class="form-control" required placeholder="Documento">
+                        <div class="alert alert-danger mt-2" *ngIf="documento.touched && !documento.valid" role="alert">
+                            <strong>Documento es obligatorio</strong>
+                        </div>
                     </div>
                     <div class="form-group pt-3">
                         <label for="lugar">Lugar de expedición</label>
-                        <input type="text" name="lugar" id="" [(ngModel)]="usuario['userDocument'].place" class="form-control" placeholder="Lugar de expedicion">
+                        <input type="text" name="lugar" id="" #place="ngModel" [(ngModel)]="usuario['userDocument'].place" class="form-control" required placeholder="Lugar de expedicion">
+                        <div class="alert alert-danger mt-2" *ngIf="place.touched && !place.valid" role="alert">
+                            <strong> Lugar de expedición es obligatorio</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="date">Fecha de expedición</label>
-                        <input type="date" name="date" id="" [(ngModel)]="usuario['userDocument'].date" class="form-control" placeholder="Fecha de expedicion">
+                        <input type="date" name="date" id="" #date="ngModel" [(ngModel)]="usuario['userDocument'].date" class="form-control" required placeholder="Fecha de expedicion">
+                        <div class="alert alert-danger mt-2" *ngIf="date.touched && !date.valid" role="alert">
+                            <strong>Fecha de expedición es obligatoria</strong>
+                        </div>
                     </div>
                     <h2 pt-3>Contacto</h2>
                     <div class="form-group">
                         <label for="address">Direccion</label>
-                        <input type="text" name="address" id="" [(ngModel)]="usuario['contact'].address" class="form-control" placeholder="Direccion" aria-describedby="helpId">
+                        <input type="text" name="address" id="" #address="ngModel" [(ngModel)]="usuario['contact'].address" class="form-control" required placeholder="Direccion">
+                        <div class="alert alert-danger mt-2" *ngIf="address.touched && !address.valid" role="alert">
+                            <strong>Direccion es obligatoria</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="city">Ciudad</label>
-                        <input type="text" name="city" id="" [(ngModel)]="usuario['contact'].city" class="form-control" placeholder="Ciudad" aria-describedby="helpId">
+                        <input type="text" name="city" id="" #city="ngModel" [(ngModel)]="usuario['contact'].city" class="form-control" required placeholder="Ciudad">
+                        <div class="alert alert-danger mt-2" *ngIf="city.touched && !city.valid" role="alert">
+                            <strong>Ciudad es obligatoria</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefono fijo</label>
-                        <input type="text" name="phone" id="" [(ngModel)]="usuario['contact'].phone" class="form-control" placeholder="Telefono fijo" aria-describedby="helpId">
+                        <input type="text" name="phone" id="" #phone="ngModel" [(ngModel)]="usuario['contact'].phone" class="form-control" required placeholder="Telefono fijo">
+                        <div class="alert alert-danger mt-2" *ngIf="phone.touched && !phone.valid" role="alert">
+                            <strong>Telefono  es obligatorio</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="celphone">Celular</label>
-                        <input type="text" name="celphone" id="" [(ngModel)]="usuario['contact'].celphone" class="form-control" placeholder="Celular" aria-describedby="helpId">
+                        <input type="text" name="celphone" id="" #celphone="ngModel" [(ngModel)]="usuario['contact'].celphone" class="form-control" required placeholder="Celular">
+                        <div class="alert alert-danger mt-2" *ngIf="celphone.touched && !celphone.valid" role="alert">
+                            <strong>Celular es obligatorio</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="emergencyname">Contacto de emergencia</label>
-                        <input type="text" name="emergencyname" id="" [(ngModel)]="usuario['contact'].emergencyname" class="form-control" placeholder="Nombre contacto" aria-describedby="helpId">
+                        <input type="text" name="emergencyname" id="" #emeregencyname="ngModel" [(ngModel)]="usuario['contact'].emergencyname" class="form-control" required placeholder="Nombre contacto">
+                        <div class="alert alert-danger mt-2" *ngIf="emeregencyname.touched && !emeregencyname.valid" role="alert">
+                            <strong>Nombre del contacto es obligatorio</strong>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="emergencyphone">Numero de contacto</label>
-                        <input type="text" name="emergencyphone" id="" [(ngModel)]="usuario['contact'].emergencyphone" class="form-control" placeholder="Numero contacto" aria-describedby="helpId">
+                        <input type="text" name="emergencyphone" id="" #emergencyphone="ngModel" [(ngModel)]="usuario['contact'].emergencyphone" class="form-control" required placeholder="Numero contacto">
+                        <div class="alert alert-danger mt-2" *ngIf="emergencyphone.touched && !emergencyphone.valid" role="alert">
+                            <strong>Numero de contacto es obligatorio</strong>
+                        </div>
                     </div>
 
-                    <input class="btn-login btn btn-primary btn-block" type="submit" value="Registrar">
+                    <input class="btn-login btn btn-primary btn-block" [disabled]="!formRegistro.valid" type="submit" value="Registrar">
                 </form>
             </div>
         </div>
