@@ -14,6 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   formSignUp: FormGroup;
   public user: User;
+  public status: string;
   constructor(private _authService: AuthService, private route: Router, private location: Location) {
     this.user = new User('', '', '', '');
     this.formSignUp = new FormGroup({
@@ -32,6 +33,7 @@ export class SignupComponent implements OnInit {
         .subscribe(
           response => {
               console.log(response);
+              this.status = 'success';
               this._authService.setUser(response);
               let token = response.id;
               this._authService.setToken(token);
@@ -40,6 +42,7 @@ export class SignupComponent implements OnInit {
           },
           err => {
             console.log(err);
+            this.status = 'failed';
           }
     );
   }

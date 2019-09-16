@@ -3,6 +3,9 @@
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
                 <h3 class="titulo mb-4">Registrate</h3>
+                <div class="alert alert-danger" *ngIf="status == 'failed'" role="alert">
+                    <strong>Error en el registro</strong>
+                </div>
                 <form (ngSubmit)="registrarUser()" [formGroup]="formSignUp">
                     <div class="form-group">
                         <label for="username">Nickname</label>
